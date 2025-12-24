@@ -11,7 +11,7 @@ from zeep.exceptions import Fault, TransportError, XMLSyntaxError
 from service.soap_client.format_error import build_error_response
 from service.utils.convert_to_dict import convert_zeep_object_to_dict
 from service.utils.logger import logger
-from service.utils.wsdl_manager import get_wsfe_wsdl
+from service.soap_client.wsdl.wsdl_manager import get_wsfe_wsdl
 
 afip_wsdl = get_wsfe_wsdl()
 
