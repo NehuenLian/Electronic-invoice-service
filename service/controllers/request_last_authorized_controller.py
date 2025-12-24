@@ -1,5 +1,4 @@
-from service.payload_builder.builder import (build_auth, extract_cbtenro,
-                                             extract_ptovta_and_cbtetipo)
+from service.payload_builder.builder import build_auth
 from service.soap_client.wsfe import fe_comp_ultimo_autorizado
 from service.utils.logger import logger
 from service.xml_management.xml_builder import extract_token_and_sign_from_xml
