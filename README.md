@@ -3,21 +3,36 @@
 
 This system is a web service that acts as middleware between local POS systems and AFIP (Administración Federal de Ingresos Públicos) / ARCA (Customs Revenue and Control Agency), the tax authority in Argentina. It receives invoices in JSON format, transforms them into XML compatible with AFIP/ARCA Web Services, sends the request via HTTP, processes the response, and returns the result to the POS in JSON format. The goal is to simplify tax compliance.
 
-[![Python](https://img.shields.io/badge/python-3.11-blue?logo=python&logoColor=white)](https://www.python.org/)
-[![lxml](https://img.shields.io/badge/lxml-5.4.0-orange)](https://pypi.org/project/lxml/)
-[![zeep](https://img.shields.io/badge/zeep-4.3.1-green)](https://pypi.org/project/zeep/)
-[![fastapi](https://img.shields.io/badge/fastapi-0.115.12-blueviolet)](https://fastapi.tiangolo.com/)
-[![pydantic](https://img.shields.io/badge/pydantic-2.11.5-red)](https://pypi.org/project/pydantic/)
-[![tenacity](https://img.shields.io/badge/tenacity-9.1.2-yellow)](https://pypi.org/project/tenacity/)
-[![ntplib](https://img.shields.io/badge/ntplib-0.4.0-lightgrey)](https://pypi.org/project/ntplib/)
+<p align="center">
+  <a href="https://www.python.org/">
+    <img src="https://img.shields.io/badge/python-3.11-blue?logo=python&logoColor=white" alt="Python">
+  </a>
+  <a href="https://pypi.org/project/zeep/">
+    <img src="https://img.shields.io/badge/zeep-4.3.1-green" alt="zeep">
+  </a>
+  <a href="https://fastapi.tiangolo.com/">
+    <img src="https://img.shields.io/badge/fastapi-0.115.12-blueviolet" alt="FastAPI">
+  </a>
+</p>
 
-## Tech Stack
+## Main Dependencies:
 
-- **Language:** Python  
-- **Cryptography:** Direct use of OpenSSL with `subprocess`  
-- **Communication with AFIP:** XML SOAP  
-- **Communication with Point of Sale:** FastAPI  
-- **Deployment:** Docker (ideal)
+- **lxml:** Library for XML processing, used to manipulate and validate the XML files required by AFIP/ARCA.  
+- **zeep:** SOAP client for easily consuming AFIP/ARCA web services.  
+- **fastapi:** Used to build the REST API that receives JSON requests from the POS system.  
+- **pydantic:** Data validation and serialization to ensure that the JSONs comply with the schemas.  
+- **tenacity:** One of the goals of this service is to generate invoices in as many cases as possible. In the case of non-critical errors, automatic retries are performed using `tenacity`.
+- **ntplib:** Used to ensure that the access ticket request contains the time synchronized with AFIP/ARCA.
+
+This API requires `openssl` to be installed on the system, as it is used to sign CMS requests. 
+
+- **On Debian/Ubuntu:**
+  ```bash
+  apt-get update && apt-get install -y openssl
+  ```
+- **On Windows:**
+  Make sure OpenSSL is installed and the path to openssl.exe is set correctly. 
+  You can download OpenSSL here: https://openssl-library.org/source/.
 
 ## Stateless?
 
@@ -77,15 +92,6 @@ Contains general helper functions: logger, existence validation, among others.
 
 ### `xml_management/`
 Stores the XML files required for the service to function and contains all necessary functions to build and manipulate these files.
-
-## Main Dependencies
-
-- **lxml:** Library for XML processing, used to manipulate and validate the XML files required by AFIP/ARCA.  
-- **zeep:** SOAP client for easily consuming AFIP/ARCA web services.  
-- **fastapi:** Used to build the REST API that receives JSON requests from the POS system.  
-- **pydantic:** Data validation and serialization to ensure that the JSONs comply with the schemas.  
-- **tenacity:** One of the goals of this service is to generate invoices in as many cases as possible. In the case of non-critical errors, automatic retries are performed using `tenacity`. This library is ideal for that purpose.
-- **ntplib:** Used to ensure that the access ticket request contains the time synchronized with AFIP/ARCA.
 
 ## Workflow (Simplified)
 

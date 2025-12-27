@@ -3,21 +3,37 @@
 
 Este sistema es un servicio web que actúa como middleware entre sistemas POS locales y AFIP (Administración Federal de Ingresos Públicos) / ARCA (Agencia de Recaudación y Control Aduanero) el organismo fiscal de Argentina. Recibe comprobantes en formato JSON, los transforma a XML compatible con los Web Services de AFIP/ARCA, envía la solicitud vía HTTP, procesa la respuesta y devuelve el resultado al POS en formato JSON. El objetivo es simplificar el cumplimiento fiscal.
 
-[![Python](https://img.shields.io/badge/python-3.11-blue?logo=python&logoColor=white)](https://www.python.org/)
-[![lxml](https://img.shields.io/badge/lxml-5.4.0-orange)](https://pypi.org/project/lxml/)
-[![zeep](https://img.shields.io/badge/zeep-4.3.1-green)](https://pypi.org/project/zeep/)
-[![fastapi](https://img.shields.io/badge/fastapi-0.115.12-blueviolet)](https://fastapi.tiangolo.com/)
-[![pydantic](https://img.shields.io/badge/pydantic-2.11.5-red)](https://pypi.org/project/pydantic/)
-[![tenacity](https://img.shields.io/badge/tenacity-9.1.2-yellow)](https://pypi.org/project/tenacity/)
-[![ntplib](https://img.shields.io/badge/ntplib-0.4.0-lightgrey)](https://pypi.org/project/ntplib/)
+<p align="center">
+  <a href="https://www.python.org/">
+    <img src="https://img.shields.io/badge/python-3.11-blue?logo=python&logoColor=white" alt="Python">
+  </a>
+  <a href="https://pypi.org/project/zeep/">
+    <img src="https://img.shields.io/badge/zeep-4.3.1-green" alt="zeep">
+  </a>
+  <a href="https://fastapi.tiangolo.com/">
+    <img src="https://img.shields.io/badge/fastapi-0.115.12-blueviolet" alt="FastAPI">
+  </a>
+</p>
 
-## Stack tecnológico
+## Dependencias principales:
 
-- **Lenguaje:** Python  
-- **Criptografía:** Uso directo de OpenSSL con `subprocess`  
-- **Comunicación con AFIP:** XML SOAP  
-- **Comunicación con Punto de Venta:** FastAPI  
-- **Deploy:** Docker (ideal)
+- **lxml:** Biblioteca para el procesamiento de los XML, para manipular y validar los archivos XML requeridos por AFIP/ARCA.  
+- **zeep:** Cliente SOAP para consumir los servicios web de AFIP/ARCA de forma sencilla.  
+- **fastapi:** Para construir la API REST que recibe las solicitudes JSON desde el sistema POS.  
+- **pydantic:** Validación y serialización de datos para que los JSON cumplan con los esquemas.  
+- **tenacity:** Una de las ideas de este servicio es que logre generar la factura en la mayor cantidad posible de casos. En caso de errores no críticos, se realizan reintentos automáticos usando `tenacity`.
+- **ntplib:** Se utiliza en este caso para que la solicitud de ticket de acceso contenga la hora sincronizada con AFIP/ARCA.
+
+Esta API requiere que `openssl` esté instalado en el sistema, ya que se utiliza para firmar solicitudes CMS.
+
+- **En Debian/Ubuntu:**
+  ```bash
+  apt-get update && apt-get install -y openssl
+  ```
+
+- **En Windows:**
+  - Asegurarse de que OpenSSL esté instalado y que la ruta a openssl.exe esté configurada correctamente.
+  - Para descargar OpenSSL: https://openssl-library.org/source/.
 
 ## ¿Stateless?
 
@@ -77,15 +93,6 @@ Contiene funciones auxiliares generales: logger, validación de existencias, ent
 
 ### `xml_management/`
 Almacena los archivos XML necesarios para el funcionamiento del servicio y contiene todas las funciones necesarias para construir y manipular estos archivos.
-
-## Dependencias principales
-
-- **lxml:** Biblioteca para el procesamiento de los XML, para manipular y validar los archivos XML requeridos por AFIP/ARCA.  
-- **zeep:** Cliente SOAP para consumir los servicios web de AFIP/ARCA de forma sencilla.  
-- **fastapi:** Para construir la API REST que recibe las solicitudes JSON desde el sistema POS.  
-- **pydantic:** Validación y serialización de datos para que los JSON cumplan con los esquemas.  
-- **tenacity:** Una de las ideas de este servicio es que logre generar la factura en la mayor cantidad posible de casos. En caso de errores no críticos, se realizan reintentos automáticos usando `tenacity`. Esta librería es ideal para eso.
-- **ntplib:** Se utiliza en este caso para que la solicitud de ticket de acceso contenga la hora sincronizada con AFIP/ARCA. 
 
 ## Flujo de trabajo (simplificado)
 
