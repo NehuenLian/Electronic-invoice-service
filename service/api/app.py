@@ -1,6 +1,6 @@
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI
+from fastapi import Depends, FastAPI
 
 from service.api.models.invoice_authorization import RootModel
 from service.api.models.invoice_query import InvoiceBase, InvoiceQueryRequest
@@ -14,9 +14,10 @@ from service.controllers.request_last_authorized_controller import \
     get_last_authorized_info
 from service.soap_client.async_client import WSFEClientManager
 from service.soap_client.wsdl.wsdl_manager import get_wsfe_wsdl
+from service.utils.afip_token_scheduler import start_scheduler, stop_scheduler
 from service.utils.convert_to_dict import convert_pydantic_model_to_dict
+from service.utils.jwt_validator import verify_token
 from service.utils.logger import logger
-from service.utils.token_scheduler import start_scheduler, stop_scheduler
 
 afip_wsdl = get_wsfe_wsdl()
 
@@ -32,7 +33,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 
 @app.post("/wsfe/invoices")
-async def generate_invoice(sale_data: RootModel) -> dict:
+async def generate_invoice(sale_data: RootModel, jwt = Depends(verify_token)) -> dict:
     
     logger.info("Received request to generate invoice at /wsfe/invoices")
 
@@ -45,7 +46,7 @@ async def generate_invoice(sale_data: RootModel) -> dict:
 
 
 @app.post("/wsfe/invoices/last-authorized")
-async def last_authorized(comp_info: InvoiceBase) -> dict:
+async def last_authorized(comp_info: InvoiceBase, jwt = Depends(verify_token)) -> dict:
 
     logger.info("Received request to fetch last authorized invoice at /wsfe/invoices/last-authorized")
 
@@ -58,7 +59,7 @@ async def last_authorized(comp_info: InvoiceBase) -> dict:
 
 
 @app.post("/wsfe/invoices/query")
-async def consult_invoice(comp_info: InvoiceQueryRequest) -> dict:
+async def consult_invoice(comp_info: InvoiceQueryRequest, jwt = Depends(verify_token)) -> dict:
 
     logger.info("Received request to query specific invoice at /wsfe/invoices/query")
 
