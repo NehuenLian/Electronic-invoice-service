@@ -3,6 +3,9 @@ service/certificates/*
 !service/certificates/.gitkeep
 !service/certificates/README.md
 
+# Ignore venv
+/venv
+
 # Ignore cache files
 __pycache__/
 *.pyc
