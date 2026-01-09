@@ -3,9 +3,9 @@ from datetime import datetime, timezone
 
 from lxml import etree
 
+from config import paths
 from service.time.time_management import generate_ntp_timestamp
 from service.utils.logger import logger
-from config import paths
 
 
 def build_login_ticket_request() -> "etree._Element":

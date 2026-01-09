@@ -1,8 +1,8 @@
 import base64
 import subprocess
 
-from service.utils.logger import logger
 from config.paths import get_afip_paths
+from service.utils.logger import logger
 
 
 def sign_login_ticket_request() -> None:
