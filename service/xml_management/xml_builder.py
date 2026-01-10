@@ -56,11 +56,11 @@ def extract_token_and_sign_from_xml() -> tuple[str, str]:
 
     return token, sign
 
-def is_expired(xml_name: str) -> bool:
+def is_expired(xml_name: str, time_provider) -> bool:
 
     logger.debug(f"Running is_expired() function for {xml_name}")
 
-    _, actual_hour, _ = generate_ntp_timestamp()
+    _, actual_hour, _ = time_provider()
 
     actual_dt = datetime.strptime(str(actual_hour), "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
 
