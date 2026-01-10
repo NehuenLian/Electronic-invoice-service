@@ -31,7 +31,9 @@ SOAP_RESPONSE = """<?xml version='1.0' encoding='UTF-8'?>
             </FECompConsultarResult>
         </FECompConsultarResponse>
     </soap:Body>
-</soap:Envelope>"""
+</soap:Envelope>
+"""
+
 
 @pytest.mark.asyncio
 async def test_consult_invoice_minimal(client: AsyncClient, httpserver_fixed_port, wsfe_manager, override_auth):
