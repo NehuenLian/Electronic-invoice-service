@@ -1,4 +1,4 @@
-![human-coded](https://badgen.net/static/Human%20Coded/100%25/green)
+![human-coded](https://badgen.net/static/Human%20Coded/100%25/green)[![codecov](https://codecov.io/github/NehuenLian/AFIP-API-middleware/graph/badge.svg?token=20WL0URAGI)](https://codecov.io/github/NehuenLian/AFIP-API-middleware)
 # Servicio Web SOAP de Facturación para Punto de Venta con Integración a la Agencia Tributaria Argentina
 
 Este sistema es un servicio web que actúa como middleware entre un sistema y AFIP (Administración Federal de Ingresos Públicos) / ARCA (Agencia de Recaudación y Control Aduanero) el organismo fiscal de Argentina. **Es un middleware que evita al desarrollador armar XML y que deja comunicarse con AFIP como si fuera una API REST**. Recibe comprobantes en formato JSON, los transforma a XML compatible con los Web Services de AFIP/ARCA, envía la solicitud vía HTTP, procesa la respuesta y devuelve el resultado al POS en formato JSON. El objetivo es simplificar el cumplimiento fiscal.

@@ -1,4 +1,4 @@
-![human-coded](https://badgen.net/static/Human%20Coded/100%25/green)
+![human-coded](https://badgen.net/static/Human%20Coded/100%25/green)[![codecov](https://codecov.io/github/NehuenLian/AFIP-API-middleware/graph/badge.svg?token=20WL0URAGI)](https://codecov.io/github/NehuenLian/AFIP-API-middleware)
 # SOAP Web Invoicing Service for Point of Sale with Integration to the Argentine Tax Agency
 
 This system is a web service that acts as middleware between local a system and AFIP (Administración Federal de Ingresos Públicos) / ARCA (Customs Revenue and Control Agency), the tax authority in Argentina. **A middleware that eliminates the need to manually build XML and lets developers work with AFIP as if it were a REST API.** It receives invoices in JSON format, transforms them into XML compatible with AFIP/ARCA Web Services, sends the request via HTTP, processes the response, and returns the result to the POS in JSON format. The goal is to simplify tax compliance.
