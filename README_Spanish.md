@@ -18,7 +18,7 @@
 # AFRelay: Microservicio de Facturación con Integración a la Agencia Tributaria Argentina
 
 **AFRelay** Es un middleware que evita al desarrollador armar XML y que deja comunicarse con AFIP como si fuera una API REST.  
-Gratis. Sin infraestructura Closed-Source. Sin XML. Sin que quien lo usa tenga que involucrarse con el protocolo SOAP
+Gratis. Sin infraestructura Closed-Source. Sin XML. Sin que quien lo usa tenga que involucrarse con el protocolo SOAP.
 
 - I/O de red asíncrono, capaz de manejar solicitudes simultáneas sin bloquearse.
 - Renueva el ticket de acceso cada 11 horas automáticamente y al levantar el servicio.
@@ -90,10 +90,9 @@ En caso de levantar el servicio sin usar Docker, es necesario instalar la herram
   ```bash
   uvicorn service.api.app:app --reload
   ```
-4. O, saltar todos los pasos si se usa Docker:
+4. Health Check liveness:
   ```bash
-  cd AFRelay
-  docker compose up
+  curl -i http://127.0.0.1:8000/health/liveness
   ```
 5. Health Check readiness:
   ```bash
@@ -102,6 +101,23 @@ En caso de levantar el servicio sin usar Docker, es necesario instalar la herram
 6. Ver docs de OpenAPI
   ```bash
   http://127.0.0.1:8000/docs
+  ```
+
+### Correr tests y ver coverage
+
+- Todos los tests:
+  ```bash
+  pytest -v --cov
+  ```
+
+- Unit tests:
+  ```bash
+  pytest tests/unit -v --cov
+  ```
+
+- Integration tests:
+  ```bash
+  pytest tests/integration -v --cov
   ```
 
 ## Consideraciones adicionales
