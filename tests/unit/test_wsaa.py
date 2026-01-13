@@ -1,7 +1,9 @@
-from service.soap_client.wsaa import consult_afip_wsaa
-import pytest
 import httpx
+import pytest
 from zeep.exceptions import Fault, TransportError, XMLSyntaxError
+
+from service.soap_client.wsaa import consult_afip_wsaa
+
 
 # ===== Success =======
 @pytest.mark.asyncio
