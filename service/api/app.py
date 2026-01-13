@@ -40,8 +40,6 @@ async def generate_invoice(sale_data: RootModel, jwt = Depends(verify_token)) ->
     sale_data = sale_data.model_dump()
     invoice_result = await request_invoice_controller(sale_data)
 
-    logger.info("Invoice generation completed successfully")
-
     return invoice_result
 
 
@@ -53,8 +51,6 @@ async def last_authorized(comp_info: InvoiceBase, jwt = Depends(verify_token)) -
     comp_info = comp_info.model_dump()
     last_authorized_info = await get_last_authorized_info(comp_info)
 
-    logger.info("Last authorized invoice retrieved successfully")
-
     return last_authorized_info
 
 
@@ -65,8 +61,6 @@ async def consult_invoice(comp_info: InvoiceQueryRequest, jwt = Depends(verify_t
 
     comp_info = comp_info.model_dump()
     result = await consult_specific_invoice(comp_info)
-
-    logger.info("Invoice query completed successfully")
 
     return result
 
