@@ -72,7 +72,7 @@ If running the service without Docker, you need to install the tool:
 
 ---
 
-### Quick start whitout Docker
+### Quick start without Docker
 
 1. Clone the repository
   ```bash
