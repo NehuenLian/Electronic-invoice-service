@@ -70,6 +70,8 @@ If running the service without Docker, you need to install the tool:
   http://localhost:8000/docs
   ```
 
+---
+
 ### Quick start whitout Docker
 
 1. Clone the repository
