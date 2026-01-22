@@ -12,7 +12,7 @@ from service.xml_management.xml_builder import (
 
 afip_wsdl = get_wsaa_wsdl()
 
-async def generate_afip_access_token() -> None:
+async def generate_afip_access_token() -> dict:
 
     logger.info("Generating a new access token...")
 
@@ -40,7 +40,12 @@ async def generate_afip_access_token() -> None:
         parse_and_save_loginticketresponse(login_ticket_response["response"], save_xml)
     
         logger.info("Token generated successfully.")
-        return {"status" : "success"}
+        return {
+            "status" : "success"
+            }
+
     else:
         logger.error("Failed to generate access token.")
-        return {"status" : "error generating access token."}
+        return {
+            "status" : "error generating access token."
+            }
