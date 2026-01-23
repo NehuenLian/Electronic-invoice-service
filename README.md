@@ -4,7 +4,7 @@
 [![coverage](https://img.shields.io/codecov/c/github/NehuenLian/AFRelay?label=coverage&token=20WL0URAGI)](https://codecov.io/github/NehuenLian/AFRelay)
 
 **AFRelay** is a middleware that eliminates the need to manually build XML and lets developers work with AFIP as if it were a REST API.  
-Free. No SaaS. No closed-source infrastructure. No XML and no SOAP manipulated by the developer.
+Free. No SaaS. No closed-source infrastructure. No XML and no SOAP manipulated by the developer. **Total control.**
 
 - Fully async I/O network, capable of handling simultaneous requests without blocking.
 - Automatically renews the access ticket each 11 hours and when the service starts.
