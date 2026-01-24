@@ -6,7 +6,6 @@ ENV DEBIAN_FRONTEND=noninteractive \
     APP_HOME=/app
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    openssl \
     ca-certificates \
     gcc \
     libxml2-dev \
