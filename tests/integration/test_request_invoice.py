@@ -40,38 +40,38 @@ async def test_request_invoice_success(client: AsyncClient, wsfe_httpserver_fixe
         SOAP_RESPONSE, content_type="text/xml"
     )
 
-    # Payload
     payload = {
-        "Auth": {"Cuit": 30740253022},
-        "FeCAEReq": {
-            "FeCabReq": {"CantReg": 1, "PtoVta": 1, "CbteTipo": 6},
-            "FeDetReq": {
-                "FECAEDetRequest": {
-                    "Concepto": 1,
-                    "DocTipo": 96,
-                    "DocNro": 12345678,
-                    "CbteDesde": 101,
-                    "CbteHasta": 101,
-                    "CbteFch": "20251226",
-                    "ImpTotal": 1210.0,
-                    "ImpTotConc": 0.0,
-                    "ImpNeto": 1000.0,
-                    "ImpOpEx": 0.0,
-                    "ImpTrib": 0.0,
-                    "ImpIVA": 210.0,
-                    "MonId": "PES",
-                    "MonCotiz": 1.0,
-                    "CondicionIVAReceptorId": 5,
-                    "Iva": {
-                        "AlicIva": {
-                            "Id": 5, 
-                            "BaseImp": 1000.0, 
-                            "Importe": 210.0
-                            }
-                        },
-                }
-            },
+        "Auth": {
+            "Cuit": 30740253022
         },
+        "FeCAEReq": {
+            "FeCabReq": {
+                "CantReg": 1,
+                "PtoVta": 1,
+                "CbteTipo": 11
+            },
+            "FeDetReq": {
+                "FECAEDetRequest": [
+                    {
+                        "Concepto": 1,
+                        "DocTipo": 99,
+                        "DocNro": 0,
+                        "CbteDesde": 2,
+                        "CbteHasta": 2,
+                        "CbteFch" : "20260125",
+                        "ImpTotal": 100.0,
+                        "ImpNeto": 100.0,
+                        "ImpTotConc": 0.0,
+                        "ImpOpEx": 0.0,
+                        "ImpTrib": 0.0,
+                        "ImpIVA": 0.0,
+                        "MonId": "PES",
+                        "MonCotiz": 1,
+                        "CondicionIVAReceptorId": 5,
+                    }
+                ]
+            }
+        }
     }
 
     # Fastapi endpoint call
@@ -95,36 +95,37 @@ async def test_request_invoice_error(client: AsyncClient, wsfe_httpserver_fixed_
 
     # Payload
     payload = {
-        "Auth": {"Cuit": 30740253022},
-        "FeCAEReq": {
-            "FeCabReq": {"CantReg": 1, "PtoVta": 1, "CbteTipo": 6},
-            "FeDetReq": {
-                "FECAEDetRequest": {
-                    "Concepto": 1,
-                    "DocTipo": 96,
-                    "DocNro": 12345678,
-                    "CbteDesde": 101,
-                    "CbteHasta": 101,
-                    "CbteFch": "20251226",
-                    "ImpTotal": 1210.0,
-                    "ImpTotConc": 0.0,
-                    "ImpNeto": 1000.0,
-                    "ImpOpEx": 0.0,
-                    "ImpTrib": 0.0,
-                    "ImpIVA": 210.0,
-                    "MonId": "PES",
-                    "MonCotiz": 1.0,
-                    "CondicionIVAReceptorId": 5,
-                    "Iva": {
-                        "AlicIva": {
-                            "Id": 5, 
-                            "BaseImp": 1000.0, 
-                            "Importe": 210.0
-                            }
-                        },
-                }
-            },
+        "Auth": {
+            "Cuit": 30740253022
         },
+        "FeCAEReq": {
+            "FeCabReq": {
+                "CantReg": 1,
+                "PtoVta": 1,
+                "CbteTipo": 11
+            },
+            "FeDetReq": {
+                "FECAEDetRequest": [
+                    {
+                        "Concepto": 1,
+                        "DocTipo": 99,
+                        "DocNro": 0,
+                        "CbteDesde": 2,
+                        "CbteHasta": 2,
+                        "CbteFch" : "20260125",
+                        "ImpTotal": 100.0,
+                        "ImpNeto": 100.0,
+                        "ImpTotConc": 0.0,
+                        "ImpOpEx": 0.0,
+                        "ImpTrib": 0.0,
+                        "ImpIVA": 0.0,
+                        "MonId": "PES",
+                        "MonCotiz": 1,
+                        "CondicionIVAReceptorId": 5,
+                    }
+                ]
+            }
+        }
     }
 
     # Fastapi endpoint call
