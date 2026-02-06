@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 
 from service.api.models.fecae_solicitar import FECAESolicitar
-from service.api.models.invoice_query import (FECompConsultar,
+from service.api.models.invoice_query import (FECAEAConsultar, FECompConsultar,
                                               FECompUltimoAutorizado)
 from service.payload_builder.builder import (add_auth_to_payload, build_auth,
                                              build_fecomp_req)
@@ -14,6 +14,21 @@ from service.xml_management.xml_builder import extract_token_and_sign_from_xml
 
 router = APIRouter()
 afip_wsdl = get_wsfe_wsdl()
+
+
+@router.post("/wsfe/FECAEAConsultar")
+async def fecaea_consultar(data: FECAEAConsultar, jwt = Depends(verify_token)) -> dict:
+
+    data = data.model_dump()
+    auth = build_auth(data)
+
+    async def make_request():
+        manager = WSFEClientManager(afip_wsdl)
+        client = manager.get_client()
+        return await client.service.FECAEAConsultar(auth, data["Periodo"], data["Orden"])
+    
+    result = await consult_afip_wsfe(make_request, "FECAEAConsultar")
+    return result
 
 
 @router.post("/wsfe/FECAESolicitar")
