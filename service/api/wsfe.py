@@ -1,7 +1,9 @@
 from fastapi import APIRouter, Depends
 
 from service.api.models.fecae_solicitar import FECAESolicitar
+from service.api.models.fecaea_reg_informativo import FECAEARegInformativo
 from service.api.models.invoice_query import (FECAEAConsultar, FECompConsultar,
+                                              FECompTotXRequest,
                                               FECompUltimoAutorizado)
 from service.payload_builder.builder import (add_auth_to_payload, build_auth,
                                              build_fecomp_req)
@@ -14,21 +16,6 @@ from service.xml_management.xml_builder import extract_token_and_sign_from_xml
 
 router = APIRouter()
 afip_wsdl = get_wsfe_wsdl()
-
-
-@router.post("/wsfe/FECAEAConsultar")
-async def fecaea_consultar(data: FECAEAConsultar, jwt = Depends(verify_token)) -> dict:
-
-    data = data.model_dump()
-    auth = build_auth(data)
-
-    async def make_request():
-        manager = WSFEClientManager(afip_wsdl)
-        client = manager.get_client()
-        return await client.service.FECAEAConsultar(auth, data["Periodo"], data["Orden"])
-    
-    result = await consult_afip_wsfe(make_request, "FECAEAConsultar")
-    return result
 
 
 @router.post("/wsfe/FECAESolicitar")
@@ -47,6 +34,21 @@ async def fecae_solicitar(sale_data: FECAESolicitar, jwt = Depends(verify_token)
 
     invoice_result = await consult_afip_wsfe(make_request, "FECAESolicitar")
     return invoice_result
+
+
+@router.post("/wsfe/FECompTotXRequest")
+async def fecomp_totx_request(data: FECompTotXRequest, jwt = Depends(verify_token)) -> dict:
+
+    data = data.model_dump()
+    auth = build_auth(data)
+
+    async def make_request():
+        manager = WSFEClientManager(afip_wsdl)
+        client = manager.get_client()
+        return await client.service.FECompTotXRequest(auth)
+    
+    result = await consult_afip_wsfe(make_request, "FECompTotXRequest")
+    return result
 
 
 @router.post("/wsfe/FECompUltimoAutorizado")
@@ -83,4 +85,36 @@ async def fe_comp_consultar(comp_info: FECompConsultar, jwt = Depends(verify_tok
         return await client.service.FECompConsultar(auth, fecomp_req)
 
     result = await consult_afip_wsfe(make_request, "FECompConsultar")
+    return result
+
+
+@router.post("/wsfe/FECAEARegInformativo")
+async def fecaea_reg_informativo(data: FECAEARegInformativo, jwt = Depends(verify_token)) -> dict:
+    
+    data = data.model_dump()
+
+    token, sign = extract_token_and_sign_from_xml()
+    invoice_with_auth = add_auth_to_payload(data, token, sign)
+
+    async def make_request():
+        manager = WSFEClientManager(afip_wsdl)
+        client = manager.get_client()
+        return await client.service.FECAEARegInformativo(invoice_with_auth['Auth'], invoice_with_auth['FeCAEARegInfReq'])
+
+    result = await consult_afip_wsfe(make_request, "FECAEARegInformativo")
+    return result
+
+
+@router.post("/wsfe/FECAEAConsultar")
+async def fecaea_consultar(data: FECAEAConsultar, jwt = Depends(verify_token)) -> dict:
+
+    data = data.model_dump()
+    auth = build_auth(data)
+
+    async def make_request():
+        manager = WSFEClientManager(afip_wsdl)
+        client = manager.get_client()
+        return await client.service.FECAEAConsultar(auth, data["Periodo"], data["Orden"])
+    
+    result = await consult_afip_wsfe(make_request, "FECAEAConsultar")
     return result
