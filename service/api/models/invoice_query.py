@@ -16,6 +16,18 @@ class FECompConsultar(InvoiceBaseQuery):
     CbteTipo: int
     CbteNro: int
 
+class FECAEASolicitar(InvoiceBaseQuery):
+    Periodo: int
+    Orden: int
+
+class FECAEASinMovimientoConsultar(InvoiceBaseQuery):
+    CAEA: str
+    PtoVta: int
+
+class FECAEASinMovimientoInformar(InvoiceBaseQuery):
+    PtoVta: int
+    CAEA: str
+
 class FECAEAConsultar(InvoiceBaseQuery):
     Periodo: int
     Orden: int
