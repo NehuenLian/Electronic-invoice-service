@@ -1,7 +1,6 @@
 from unittest.mock import patch
 
-from service.payload_builder.builder import (add_auth_to_payload, build_auth,
-                                             build_fecomp_req)
+from service.payload_builder.builder import add_auth_to_payload
 
 
 def test_add_auth_to_payload():
