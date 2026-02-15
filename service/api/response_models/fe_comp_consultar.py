@@ -1,14 +1,7 @@
 from pydantic import BaseModel, ConfigDict, Field
 
-from service.api.response_models.common import Errors, Events
+from service.api.response_models.common import Errors, Events, Observaciones
 
-
-class Obs(BaseModel):
-    Code: int
-    Msg: str
-
-class Observaciones(BaseModel):
-    Obs: Obs
 
 class PeriodoAsoc(BaseModel):
     FchDesde: str
