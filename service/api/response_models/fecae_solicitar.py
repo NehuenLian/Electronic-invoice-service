@@ -41,8 +41,8 @@ class FECAESolicitarResult(BaseModel):
 
     model_config = ConfigDict(populate_by_name=True)
 
-    FeCabResp: FeCabResp
-    FeDetResp: FeDetResp
+    fe_cab_resp: FeCabResp | None = Field(None, alias="FeCabResp")
+    fe_det_resp: FeDetResp | None = Field(None, alias="FeDetResp")
 
     events: Events | None = Field(None, alias="Events")
     errors: Errors | None = Field(None, alias="Errors")

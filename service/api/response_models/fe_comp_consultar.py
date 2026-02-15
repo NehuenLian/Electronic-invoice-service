@@ -96,14 +96,10 @@ class FECompConsultaResponse(BaseModel):
 
     model_config = ConfigDict(populate_by_name=True)
 
-    ResultGet: ResultGet
+    result_get: ResultGet | None = Field(None, alias="ResultGet")
 
-    events: Events | None = Field(None, alias="Events")
     errors: Errors | None = Field(None, alias="Errors")
-
-class FECompConsultarResult(BaseModel):
-
-    FECompConsultaResponse: FECompConsultaResponse
+    events: Events | None = Field(None, alias="Events")
 
 class FECompConsultarResponse(BaseModel):
     status: str
