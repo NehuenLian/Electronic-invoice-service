@@ -39,18 +39,18 @@ Writing docs is dead boring and one of the big problems with many open source pr
 
 ### How to Contribute
 
-1. Reporting bugs
-- Check the issues tab to see if the bug has already been reported.
-- If not, open a new issue. Please include:
-    - A clear and descriptive title.
-    - Steps to reproduce the bug.
-    - What you expected to happen vs. what actually happened
+### 1. Reporting bugs
+Check the issues tab to see if the bug has already been reported.
+If not, open a new issue. Please include:
+- A clear and descriptive title.
+- Steps to reproduce the bug.
+- What you expected to happen vs. what actually happened
 
-2. Suggesting Enhacements
+### 2. Suggesting Enhacements
 
-- We love new ideas. Before writing code, please open an issue labeled `enhancement` so we can discuss the implementation and ensure it aligns with the project's roadmap.
+We love new ideas. Before writing code, please open an issue labeled `enhancement` so we can discuss the implementation and ensure it aligns with the project's roadmap.
 
-3. Pull Requests (PRs)
+### 3. Pull Requests (PRs)
 - Keep your PRs focused. Small, single-purpose PRs are much easier to review.
 - Ensure your code follows the existing style (please run `isort . `).
 - Write meaningful commit messages (e.g., `feat: add data verification`). We follow [Conventional Commits](https://www.conventionalcommits.org/).
