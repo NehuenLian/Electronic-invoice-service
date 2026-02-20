@@ -1,7 +1,13 @@
 # AFRelay: Microservicio de Facturación con integración a la Agencia Tributaria Argentina
 
-[![CI](https://github.com/NehuenLian/AFRelay/actions/workflows/tests.yml/badge.svg)](https://github.com/NehuenLian/AFRelay/actions/workflows/tests.yml)
-[![coverage](https://img.shields.io/codecov/c/github/NehuenLian/AFRelay?label=coverage&token=20WL0URAGI)](https://codecov.io/github/NehuenLian/AFRelay)
+<p align="center">
+  <a href="https://github.com/NehuenLian/AFRelay/actions/workflows/tests.yml">
+    <img src="https://github.com/NehuenLian/AFRelay/actions/workflows/tests.yml/badge.svg" alt="CI">
+  </a>
+  <a href="https://codecov.io/github/NehuenLian/AFRelay">
+    <img src="https://img.shields.io/codecov/c/github/NehuenLian/AFRelay?label=coverage&token=20WL0URAGI" alt="coverage">
+  </a>
+</p>
 
 <p align="center">
   <a href="https://af-relay-docs.vercel.app/intro">Documentacion</a>
