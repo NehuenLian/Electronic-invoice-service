@@ -22,6 +22,70 @@ loginCmsResponse = """<?xml version='1.0' encoding='UTF-8'?>
 </soapenv:Envelope>
 """
 
+FECAESolicitarResponse = """<?xml version="1.0" encoding="utf-8"?>
+<soap-env:Envelope
+    xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:ar="http://ar.gov.afip.dif.FEV1/">
+    <soap-env:Header/>
+    <soap-env:Body>
+        <ar:FECAESolicitarResponse>
+            <ar:FECAESolicitarResult>
+                <ar:FeCabResp>
+                    <ar:Cuit>30740253022</ar:Cuit>
+                    <ar:PtoVta>1</ar:PtoVta>
+                    <ar:CbteTipo>6</ar:CbteTipo>
+                    <ar:FchProceso>20251226123045</ar:FchProceso>
+                    <ar:CantReg>1</ar:CantReg>
+                    <ar:Resultado>A</ar:Resultado>
+                </ar:FeCabResp>
+                <ar:FeDetResp>
+                    <ar:FECAEDetResponse>
+                        <ar:Concepto>1</ar:Concepto>
+                        <ar:DocTipo>99</ar:DocTipo>
+                        <ar:DocNro>0</ar:DocNro>
+                        <ar:CbteDesde>2</ar:CbteDesde>
+                        <ar:CbteHasta>2</ar:CbteHasta>
+                        <ar:Resultado>A</ar:Resultado>
+                    </ar:FECAEDetResponse>
+                </ar:FeDetResp>
+            </ar:FECAESolicitarResult>
+        </ar:FECAESolicitarResponse>
+    </soap-env:Body>
+</soap-env:Envelope>
+"""
+
+FECompTotXRequestResponse = """<?xml version="1.0" encoding="utf-8"?>
+<soap-env:Envelope
+    xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:ar="http://ar.gov.afip.dif.FEV1/">
+    <soap-env:Header/>
+    <soap-env:Body>
+        <ar:FECompTotXRequestResponse>
+            <FECompTotXRequestResult>
+                <RegXReq>1</RegXReq>
+            </FECompTotXRequestResult>
+        </ar:FECompTotXRequestResponse>
+    </soap-env:Body>
+</soap-env:Envelope>
+"""
+
+FeCompUltimoAutorizadoResponse = """<?xml version="1.0" encoding="utf-8"?>
+<soap-env:Envelope
+    xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:ar="http://ar.gov.afip.dif.FEV1/">
+    <soap-env:Header/>
+    <soap-env:Body>
+        <ar:FECompUltimoAutorizadoResponse>
+            <ar:FECompUltimoAutorizadoResult>
+                <ar:PtoVta>1</ar:PtoVta>
+                <ar:CbteTipo>6</ar:CbteTipo>
+                <ar:CbteNro>1548</ar:CbteNro>
+            </ar:FECompUltimoAutorizadoResult>
+        </ar:FECompUltimoAutorizadoResponse>
+    </soap-env:Body>
+</soap-env:Envelope>
+"""
+
 FECompConsultarResponse = """<?xml version="1.0" encoding="UTF-8"?>
 <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
     <soap:Body>
@@ -57,53 +121,3 @@ FECompConsultarResponse = """<?xml version="1.0" encoding="UTF-8"?>
     </soap:Body>
 </soap:Envelope>
 """
-
-FeCompUltimoAutorizadoResponse = """<?xml version="1.0" encoding="utf-8"?>
-<soap-env:Envelope
-    xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/"
-    xmlns:ar="http://ar.gov.afip.dif.FEV1/">
-    <soap-env:Header/>
-    <soap-env:Body>
-        <ar:FECompUltimoAutorizadoResponse>
-            <ar:FECompUltimoAutorizadoResult>
-                <ar:PtoVta>1</ar:PtoVta>
-                <ar:CbteTipo>6</ar:CbteTipo>
-                <ar:CbteNro>1548</ar:CbteNro>
-            </ar:FECompUltimoAutorizadoResult>
-        </ar:FECompUltimoAutorizadoResponse>
-    </soap-env:Body>
-</soap-env:Envelope>
-"""
-
-FECAESolicitarResponse = """<?xml version="1.0" encoding="utf-8"?>
-<soap-env:Envelope
-    xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/"
-    xmlns:ar="http://ar.gov.afip.dif.FEV1/">
-    <soap-env:Header/>
-    <soap-env:Body>
-        <ar:FECAESolicitarResponse>
-            <ar:FECAESolicitarResult>
-                <ar:FeCabResp>
-                    <ar:Cuit>30740253022</ar:Cuit>
-                    <ar:PtoVta>1</ar:PtoVta>
-                    <ar:CbteTipo>6</ar:CbteTipo>
-                    <ar:FchProceso>20251226123045</ar:FchProceso>
-                    <ar:CantReg>1</ar:CantReg>
-                    <ar:Resultado>A</ar:Resultado>
-                </ar:FeCabResp>
-                <ar:FeDetResp>
-                    <ar:FECAEDetResponse>
-                        <ar:Concepto>1</ar:Concepto>
-                        <ar:DocTipo>99</ar:DocTipo>
-                        <ar:DocNro>0</ar:DocNro>
-                        <ar:CbteDesde>2</ar:CbteDesde>
-                        <ar:CbteHasta>2</ar:CbteHasta>
-                        <ar:Resultado>A</ar:Resultado>
-                    </ar:FECAEDetResponse>
-                </ar:FeDetResp>
-            </ar:FECAESolicitarResult>
-        </ar:FECAESolicitarResponse>
-    </soap-env:Body>
-</soap-env:Envelope>
-"""
-
