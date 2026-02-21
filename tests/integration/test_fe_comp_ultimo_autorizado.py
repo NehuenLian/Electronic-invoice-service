@@ -1,6 +1,8 @@
 import pytest
 from httpx import AsyncClient
+
 from .soap_responses import FeCompUltimoAutorizadoResponse
+
 
 @pytest.mark.asyncio
 async def test_fe_comp_ultimo_autorizado_success(client: AsyncClient, wsfe_httpserver_fixed_port, wsfe_manager, override_auth):
