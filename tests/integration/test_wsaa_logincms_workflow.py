@@ -2,30 +2,8 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 from zeep import AsyncClient
+from .soap_responses import loginCmsResponse
 
-SOAP_RESPONSE = """<?xml version='1.0' encoding='UTF-8'?>
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://wsaa.view.sua.dvadac.desein.afip.gov">
-    <soapenv:Body>
-        <ns1:loginCmsResponse>
-            <ns1:loginCmsReturn><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
-                <loginTicketResponse version="1.0">
-                    <header>
-                        <source>CN=wsaahomo, O=AFIP, C=AR, SERIALNUMBER=CUIT 33693450239</source>
-                        <destination>SERIALNUMBER=CUIT 30740253022, CN=certificadodefinitivo</destination>
-                        <uniqueId>3634574819</uniqueId>
-                        <generationTime>2026-01-07T02:40:09.235-03:00</generationTime>
-                        <expirationTime>2026-01-07T14:40:09.235-03:00</expirationTime>
-                    </header>
-                    <credentials>
-                        <token>fake_token</token>
-                        <sign>fake_sign</sign>
-                    </credentials>
-                </loginTicketResponse>]]>
-            </ns1:loginCmsReturn>
-        </ns1:loginCmsResponse>
-    </soapenv:Body>
-</soapenv:Envelope>
-"""
 
 @pytest.mark.asyncio
 async def test_generate_afip_access_token_success(
@@ -38,7 +16,7 @@ async def test_generate_afip_access_token_success(
 
     # Configure http server
     wsaa_httpserver_fixed_port.expect_request("/soap", method="POST").respond_with_data(
-        SOAP_RESPONSE, content_type="text/xml"
+        loginCmsResponse, content_type="text/xml"
     )
 
     # Magic mocks patched directly in the test for practicality

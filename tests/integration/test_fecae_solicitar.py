@@ -1,37 +1,6 @@
 import pytest
 from httpx import AsyncClient
-
-SOAP_RESPONSE = """<?xml version="1.0" encoding="utf-8"?>
-<soap-env:Envelope
-    xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/"
-    xmlns:ar="http://ar.gov.afip.dif.FEV1/">
-    <soap-env:Header/>
-    <soap-env:Body>
-        <ar:FECAESolicitarResponse>
-            <ar:FECAESolicitarResult>
-                <ar:FeCabResp>
-                    <ar:Cuit>30740253022</ar:Cuit>
-                    <ar:PtoVta>1</ar:PtoVta>
-                    <ar:CbteTipo>6</ar:CbteTipo>
-                    <ar:FchProceso>20251226123045</ar:FchProceso>
-                    <ar:CantReg>1</ar:CantReg>
-                    <ar:Resultado>A</ar:Resultado>
-                </ar:FeCabResp>
-                <ar:FeDetResp>
-                    <ar:FECAEDetResponse>
-                        <ar:Concepto>1</ar:Concepto>
-                        <ar:DocTipo>99</ar:DocTipo>
-                        <ar:DocNro>0</ar:DocNro>
-                        <ar:CbteDesde>2</ar:CbteDesde>
-                        <ar:CbteHasta>2</ar:CbteHasta>
-                        <ar:Resultado>A</ar:Resultado>
-                    </ar:FECAEDetResponse>
-                </ar:FeDetResp>
-            </ar:FECAESolicitarResult>
-        </ar:FECAESolicitarResponse>
-    </soap-env:Body>
-</soap-env:Envelope>
-"""
+from .soap_responses import FECAESolicitarResponse
 
 
 @pytest.mark.asyncio
@@ -39,7 +8,7 @@ async def test_request_invoice_success(client: AsyncClient, wsfe_httpserver_fixe
 
     # Configure http server
     wsfe_httpserver_fixed_port.expect_request("/soap", method="POST").respond_with_data(
-        SOAP_RESPONSE, content_type="text/xml"
+        FECAESolicitarResponse, content_type="text/xml"
     )
 
     payload = {
