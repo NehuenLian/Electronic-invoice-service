@@ -8,7 +8,7 @@ from service.utils.logger import logger
 
 
 class loginCmsResponse(BaseModel):
-    status: str = Field(..., json_schema_extra={"status": "success"})
+    status: str = Field(..., json_schema_extra={"example": "success"})
 
 router = APIRouter()
 
