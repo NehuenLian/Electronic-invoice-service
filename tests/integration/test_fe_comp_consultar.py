@@ -36,9 +36,9 @@ async def test_fe_comp_consultar_error(client: AsyncClient, wsfe_httpserver_fixe
 
     # Configure http server
     wsfe_httpserver_fixed_port.expect_request("/not_existent", method="POST").respond_with_data(
-    "Internal Server Error",
-    status=500,
-    content_type="text/plain",
+        "Internal Server Error",
+        status=500,
+        content_type="text/plain",
     )
 
     # Payload
