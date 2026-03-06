@@ -156,6 +156,7 @@ FECAEARegInformativoResponse = """<?xml version="1.0" encoding="utf-8"?>
                         <DocNro>20123456789</DocNro>
                         <CbteDesde>1</CbteDesde>
                         <CbteHasta>1</CbteHasta>
+                        <CbteFch>20260224</CbteFch>
                         <Resultado>A</Resultado>
                         <CAEA>26081234567890</CAEA> 
                     </FECAEADetResponse>
