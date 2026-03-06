@@ -27,6 +27,7 @@
           <FchVtoPago/>
           <MonId>PES</MonId>
           <MonCotiz>1</MonCotiz>
+          <CondicionIVAReceptorId>5</CondicionIVAReceptorId>
           <CbtesAsoc>
             <CbteAsoc />
           </CbtesAsoc>
@@ -50,7 +51,6 @@
             <FchDesde />
             <FchHasta />
           </PeriodoAsoc>
-          <CondicionIVAReceptorId>5</CondicionIVAReceptorId>
           <Resultado>A</Resultado>
           <CodAutorizacion>75422302377891</CodAutorizacion>
           <EmisionTipo>CAE</EmisionTipo>
